@@ -8,295 +8,221 @@
     <style>
         :root {
             --primary: #ff0055;
-            --bg: #090a0f;
-            --text-light: #e0e0e0;
+            --bg: #050608;
+            --card-inner: #1a1a1a;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             background-color: var(--bg);
             color: white;
             font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
         }
 
-        /* Hero Section */
         header {
             text-align: center;
-            padding: 100px 20px;
-            background: radial-gradient(circle at center, #1a0b1c 0%, var(--bg) 100%);
-            border-bottom: 2px solid rgba(255, 0, 85, 0.3);
-            position: relative;
+            padding: 80px 20px;
+            background: linear-gradient(to bottom, #1a0b1c, var(--bg));
         }
 
         h1 {
             font-family: 'Bebas Neue', cursive;
             font-size: 5rem;
-            letter-spacing: 5px;
-            color: #fff;
-            text-shadow: 0 0 20px var(--primary), 0 0 40px var(--primary);
-            margin-bottom: 10px;
+            color: var(--primary);
+            text-shadow: 0 0 15px rgba(255, 0, 85, 0.7);
+            margin: 0;
         }
 
-        header p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* Grid Layout */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 40px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        /* Anime Card Design */
         .card {
-            position: relative;
-            height: 450px;
-            border-radius: 20px;
+            background: var(--card-inner);
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            cursor: pointer;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(255, 0, 85, 0.5);
-            z-index: 10;
+            transform: scale(1.05);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.3);
         }
 
-        /* Card Backgrounds (Using high-quality aesthetic URLs) */
-        .card-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.6s ease;
-        }
-        
-        .card:hover .card-bg {
-            transform: scale(1.1);
+        /* עיצוב התמונות */
+        .card-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover; /* שומר על יחס התמונה */
+            border-bottom: 3px solid var(--primary);
         }
 
-        .bg-1 { background-image: url('https://images.unsplash.com/photo-1614583225154-5fc20f632dc5?auto=format&fit=crop&q=80&w=800'); }
-        .bg-2 { background-image: url('https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&q=80&w=800'); }
-        .bg-3 { background-image: url('https://images.unsplash.com/photo-1618336753974-aae8e04506aa?auto=format&fit=crop&q=80&w=800'); }
-        .bg-4 { background-image: url('https://images.unsplash.com/photo-1542451313056-b7c8e626645f?auto=format&fit=crop&q=80&w=800'); }
-        .bg-5 { background-image: url('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&q=80&w=800'); }
-        .bg-6 { background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800'); }
-        .bg-7 { background-image: url('https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=800'); }
-        .bg-8 { background-image: url('https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?auto=format&fit=crop&q=80&w=800'); }
-        .bg-9 { background-image: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800'); }
-        .bg-10{ background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=800'); }
-
-        /* Card Overlay & Content */
-        .card-overlay {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0.5) 50%, transparent 100%);
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px;
-            transition: all 0.4s ease;
+            justify-content: space-between;
         }
 
         .rank {
-            position: absolute;
-            top: 20px; right: 20px;
-            background: var(--primary);
-            color: white;
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.8rem;
-            padding: 5px 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(255, 0, 85, 0.5);
+            color: var(--primary);
+            font-family: 'Bebas Neue';
+            font-size: 1.5rem;
         }
 
-        .title {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            line-height: 1.1;
-        }
-
-        .description {
-            font-size: 0.9rem;
-            color: #b0b0b0;
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: opacity 0.4s ease, max-height 0.4s ease;
-        }
-
-        .card:hover .description {
-            opacity: 1;
-            max-height: 100px;
-            margin-bottom: 20px;
+        h2 {
+            font-size: 1.4rem;
+            margin: 5px 0 15px;
+            font-family: 'Bebas Neue';
+            letter-spacing: 1px;
         }
 
         .watch-btn {
-            display: inline-block;
-            background: transparent;
+            background: var(--primary);
             color: white;
             text-decoration: none;
-            font-weight: 600;
-            border: 2px solid var(--primary);
-            padding: 10px 20px;
-            border-radius: 8px;
             text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s ease;
-        }
-
-        .card:hover .watch-btn {
-            opacity: 1;
-            transform: translateY(0);
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.2s;
         }
 
         .watch-btn:hover {
-            background: var(--primary);
-            box-shadow: 0 0 15px var(--primary);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid #222;
-            margin-top: 50px;
-            color: #555;
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.5rem;
-            letter-spacing: 2px;
+            filter: brightness(1.2);
+            box-shadow: 0 0 10px var(--primary);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Top 10 Anime</h1>
-        <p>The Most Epic Series of 2026</p>
+        <h1>ANIME TOP 10</h1>
+        <p>THE HOTTEST PICKS OF 2026</p>
     </header>
 
     <div class="grid-container">
         <div class="card">
-            <div class="card-bg bg-1"></div>
-            <div class="card-overlay">
-                <div class="rank">#1</div>
-                <div class="title">Solo Leveling: Arise</div>
-                <div class="description">Sung Jinwoo continues his journey as the Shadow Monarch. Mankind's greatest hunter faces unimaginable threats.</div>
-                <a href="https://www.crunchyroll.com/series/G0BEWMXWG/solo-leveling" target="_blank" class="watch-btn">▶ Watch Episode 1</a>
+            <img src="https://m.media-amazon.com/images/M/MV-Solo-Leveling.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Solo+Leveling'" class="card-img" alt="Solo Leveling">
+            <div class="card-content">
+                <div>
+                    <span class="rank">#01</span>
+                    <h2>Solo Leveling Season 2</h2>
+                </div>
+                <a href="https://www.crunchyroll.com/series/G0BEWMXWG/solo-leveling" target="_blank" class="watch-btn">WATCH NOW</a>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-bg bg-2"></div>
-            <div class="card-overlay">
-                <div class="rank">#2</div>
-                <div class="title">Jujutsu Kaisen: Culling Game</div>
-                <div class="description">The deadly Culling Game begins. Itadori and Megumi must navigate a battlefield of ancient and modern sorcerers.</div>
-                <a href="https://www.crunchyroll.com/series/GRDV01P9Y/jujutsu-kaisen" target="_blank" class="watch-btn">▶ Watch Episode 1</a>
+            <img src="https://m.media-amazon.com/images/M/MV-Jujutsu-Kaisen.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Jujutsu+Kaisen'" class="card-img" alt="JJK">
+            <div class="card-content">
+                <div>
+                    <span class="rank">#02</span>
+                    <h2>Jujutsu Kaisen: Culling Game</h2>
+                </div>
+                <a href="https://www.crunchyroll.com/series/GRDV01P9Y/jujutsu-kaisen" target="_blank" class="watch-btn">WATCH NOW</a>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-bg bg-3"></div>
-            <div class="card-overlay">
-                <div class="rank">#3</div>
-                <div class="title">Demon Slayer: Infinity Castle</div>
-                <div class="description">The final war starts now. The Hashira find themselves trapped in Muzan's ever-shifting dimensional fortress.</div>
-                <a href="https://www.crunchyroll.com/series/GY5P48XEY/demon-slayer-kimetsu-no-yaiba" target="_blank" class="watch-btn">▶ Watch Episode 1</a>
+            <img src="https://m.media-amazon.com/images/M/MV-Demon-Slayer.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Demon+Slayer'" class="card-img" alt="Demon Slayer">
+            <div class="card-content">
+                <div>
+                    <span class="rank">#03</span>
+                    <h2>Demon Slayer: Infinity Castle</h2>
+                </div>
+                <a href="https://www.crunchyroll.com/series/GY5P48XEY/demon-slayer-kimetsu-no-yaiba" target="_blank" class="watch-btn">WATCH NOW</a>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-bg bg-4"></div>
-            <div class="card-overlay">
-                <div class="rank">#4</div>
-                <div class="title">Chainsaw Man Part 2</div>
-                <div class="description">Denji just wants a normal life and a girlfriend, but the devils won't leave him alone in the school arc.</div>
-                <a href="https://www.crunchyroll.com/series/G9VHN9MWW/chainsaw-man" target="_blank" class="watch-btn">▶ Watch Episode 1</a>
+            <img src="https://m.media-amazon.com/images/M/MV-Chainsaw-Man.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Chainsaw+Man'" class="card-img" alt="CSM">
+            <div class="card-content">
+                <div>
+                    <span class="rank">#04</span>
+                    <h2>Chainsaw Man Part 2</h2>
+                </div>
+                <a href="https://www.crunchyroll.com/series/G9VHN9MWW/chainsaw-man" target="_blank" class="watch-btn">WATCH NOW</a>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-bg bg-5"></div>
-            <div class="card-overlay">
-                <div class="rank">#5</div>
-                <div class="title">One Piece: Elbaf</div>
-                <div class="description">The Straw Hats finally reach the legendary land of the giants, Elbaf. The race for the One Piece heats up.</div>
-                <a href="https://www.crunchyroll.com/series/GRMG8ZQZR/one-piece" target="_blank" class="watch-btn">▶ Watch Episode 1</a>
+            <img src="https://m.media-amazon.com/images/M/MV-One-Piece.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=One+Piece'" class="card-img" alt="One Piece">
+            <div class="card-content">
+                <div>
+                    <span class="rank">#05</span>
+                    <h2>One Piece: Elbaf Arc</h2>
+                </div>
+                <a href="https://www.crunchyroll.com/series/GRMG8ZQZR/one-piece" target="_blank" class="watch-btn">WATCH NOW</a>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-bg bg-6"></div>
-            <div class="card-overlay">
-                <div class="rank">#6</div>
-                <div class="title">Spy x Family S3</div>
-                <div class="description">Twilight faces his hardest mission yet, while Anya continues to read minds and save the world from the shadows.</div>
-                <a href="https://www.crunchyroll.com/series/G6W49DG3R/spy-x-family" target="_blank" class="watch-btn">▶ Watch Episode 1</a>
+            <img src="https://m.media-amazon.com/images/M/MV-Spy-Family.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Spy+x+Family'" class="card-img" alt="Spy x Family">
+            <div class="card-content">
+                <div>
+                    <span class="rank">#06</span>
+                    <h2>Spy x Family Season 3</h2>
+                </div>
+                <a href="https://www.crunchyroll.com/series/G6W49DG3R/spy-x-family" target="_blank" class="watch-btn">WATCH NOW</a>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-bg bg-7"></div>
-            <div class="card-overlay">
-                <div class="rank">#7</div>
-                <div class="title">My Hero Academia: Final War</div>
-                <div class="description">Deku vs Shigaraki. The ultimate battle between heroes and villains reaches its explosive conclusion.</div>
-                <a href="https://www.crunchyroll.com/series/G6NQ5DWZ6/my-hero-academia" target="_blank" class="watch-btn">▶ Watch Episode 1</a>
+            <img src="https://m.media-amazon.com/images/M/MV-MHA.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=My+Hero+Academia'" class="card-img" alt="MHA">
+            <div class="card-content">
+                <div>
+                    <span class="rank">#07</span>
+                    <h2>My Hero Academia: Final War</h2>
+                </div>
+                <a href="https://www.crunchyroll.com/series/G6NQ5DWZ6/my-hero-academia" target="_blank" class="watch-btn">WATCH NOW</a>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-bg bg-8"></div>
-            <div class="card-overlay">
-                <div class="rank">#8</div>
-                <div class="title">Oshi No Ko S3</div>
-                <div class="description">Aqua's revenge plan moves into its final stage as the dark reality of the entertainment industry is fully exposed.</div>
-                <a href="https://www.hidive.com/tv/oshi-no-ko" target="_blank" class="watch-btn">▶ Watch Episode 1</a>
+            <img src="https://m.media-amazon.com/images/M/MV-Oshi-No-Ko.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Oshi+No+Ko'" class="card-img" alt="Oshi No Ko">
+            <div class="card-content">
+                <div>
+                    <span class="rank">#08</span>
+                    <h2>Oshi No Ko Season 3</h2>
+                </div>
+                <a href="https://www.hidive.com/tv/oshi-no-ko" target="_blank" class="watch-btn">WATCH NOW</a>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-bg bg-9"></div>
-            <div class="card-overlay">
-                <div class="rank">#9</div>
-                <div class="title">Kaiju No. 8 S2</div>
-                <div class="description">Kafka Hibino must learn to control his Kaiju powers while defending the Defense Force from a massive new threat.</div>
-                <a href="https://www.crunchyroll.com/series/GG5H5X00W/kaiju-no-8" target="_blank" class="watch-btn">▶ Watch Episode 1</a>
+            <img src="https://m.media-amazon.com/images/M/MV-Kaiju-No-8.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Kaiju+No.+8'" class="card-img" alt="Kaiju No. 8">
+            <div class="card-content">
+                <div>
+                    <span class="rank">#09</span>
+                    <h2>Kaiju No. 8 Season 2</h2>
+                </div>
+                <a href="https://www.crunchyroll.com/series/GG5H5X00W/kaiju-no-8" target="_blank" class="watch-btn">WATCH NOW</a>
             </div>
         </div>
 
         <div class="card">
-            <div class="card-bg bg-10"></div>
-            <div class="card-overlay">
-                <div class="rank">#10</div>
-                <div class="title">Blue Lock: U-20</div>
-                <div class="description">The Blue Lock eleven take on Japan's U-20 national team in a match that will decide the future of Japanese soccer.</div>
-                <a href="https://www.crunchyroll.com/series/G6W49D37R/blue-lock" target="_blank" class="watch-btn">▶ Watch Episode 1</a>
+            <img src="https://m.media-amazon.com/images/M/MV-Blue-Lock.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Blue+Lock'" class="card-img" alt="Blue Lock">
+            <div class="card-content">
+                <div>
+                    <span class="rank">#10</span>
+                    <h2>Blue Lock: U-20 World Cup</h2>
+                </div>
+                <a href="https://www.crunchyroll.com/series/G6W49D37R/blue-lock" target="_blank" class="watch-btn">WATCH NOW</a>
             </div>
         </div>
     </div>
-
-    <footer>
-        © 2026 ANIME CHARTS - STAY OTAKU
-    </footer>
 
 </body>
 </html>
