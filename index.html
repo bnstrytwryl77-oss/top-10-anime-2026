@@ -9,7 +9,7 @@
         :root {
             --primary: #ff0055;
             --bg: #050608;
-            --card-inner: #1a1a1a;
+            --card-inner: #16161a;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,16 +28,16 @@
 
         h1 {
             font-family: 'Bebas Neue', cursive;
-            font-size: 5rem;
+            font-size: clamp(3rem, 10vw, 5rem);
             color: var(--primary);
-            text-shadow: 0 0 15px rgba(255, 0, 85, 0.7);
+            text-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
             margin: 0;
         }
 
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 30px;
             padding: 40px;
             max-width: 1400px;
             margin: 0 auto;
@@ -45,26 +45,39 @@
 
         .card {
             background: var(--card-inner);
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
             border: 1px solid #333;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .card:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 0 20px rgba(255, 0, 85, 0.3);
+            box-shadow: 0 15px 30px rgba(255, 0, 85, 0.4);
         }
 
-        /* עיצוב התמונות */
-        .card-img {
+        /* עיצוב התמונות עם גיבוי למקרה של שגיאה */
+        .img-container {
             width: 100%;
             height: 400px;
-            object-fit: cover; /* שומר על יחס התמונה */
-            border-bottom: 3px solid var(--primary);
+            background: #222;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.1);
         }
 
         .card-content {
@@ -73,19 +86,27 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            background: linear-gradient(to top, #16161a, #1f1f23);
         }
 
         .rank {
-            color: var(--primary);
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary);
+            padding: 5px 12px;
+            border-radius: 8px;
             font-family: 'Bebas Neue';
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            z-index: 2;
         }
 
         h2 {
             font-size: 1.4rem;
-            margin: 5px 0 15px;
+            margin-bottom: 15px;
             font-family: 'Bebas Neue';
             letter-spacing: 1px;
+            color: #fff;
         }
 
         .watch-btn {
@@ -94,14 +115,16 @@
             text-decoration: none;
             text-align: center;
             padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: 0.2s;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .watch-btn:hover {
-            filter: brightness(1.2);
-            box-shadow: 0 0 10px var(--primary);
+            background: #ff2e73;
+            box-shadow: 0 0 20px var(--primary);
         }
     </style>
 </head>
@@ -109,117 +132,117 @@
 
     <header>
         <h1>ANIME TOP 10</h1>
-        <p>THE HOTTEST PICKS OF 2026</p>
+        <p>THE HOTTEST TRENDS OF 2026</p>
     </header>
 
     <div class="grid-container">
         <div class="card">
-            <img src="https://m.media-amazon.com/images/M/MV-Solo-Leveling.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Solo+Leveling'" class="card-img" alt="Solo Leveling">
+            <span class="rank">#01</span>
+            <div class="img-container">
+                <img src="https://image.tmdb.org/t/p/w500/v9977U87YpD67I87YpD67I87YpD.jpg" onerror="this.src='https://images.unsplash.com/photo-1541562232579-512a21360020?w=500&q=80'" class="card-img" alt="Solo Leveling">
+            </div>
             <div class="card-content">
-                <div>
-                    <span class="rank">#01</span>
-                    <h2>Solo Leveling Season 2</h2>
-                </div>
-                <a href="https://www.crunchyroll.com/series/G0BEWMXWG/solo-leveling" target="_blank" class="watch-btn">WATCH NOW</a>
+                <h2>Solo Leveling: Arise</h2>
+                <a href="https://www.crunchyroll.com/series/G0BEWMXWG/solo-leveling" target="_blank" class="watch-btn">Watch Episode 1</a>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://m.media-amazon.com/images/M/MV-Jujutsu-Kaisen.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Jujutsu+Kaisen'" class="card-img" alt="JJK">
+            <span class="rank">#02</span>
+            <div class="img-container">
+                <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/h9977U87YpD67I87YpD67I87YpD.jpg" onerror="this.src='https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=500&q=80'" class="card-img" alt="JJK">
+            </div>
             <div class="card-content">
-                <div>
-                    <span class="rank">#02</span>
-                    <h2>Jujutsu Kaisen: Culling Game</h2>
-                </div>
-                <a href="https://www.crunchyroll.com/series/GRDV01P9Y/jujutsu-kaisen" target="_blank" class="watch-btn">WATCH NOW</a>
+                <h2>Jujutsu Kaisen: Culling Game</h2>
+                <a href="https://www.crunchyroll.com/series/GRDV01P9Y/jujutsu-kaisen" target="_blank" class="watch-btn">Watch Episode 1</a>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://m.media-amazon.com/images/M/MV-Demon-Slayer.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Demon+Slayer'" class="card-img" alt="Demon Slayer">
+            <span class="rank">#03</span>
+            <div class="img-container">
+                <img src="https://image.tmdb.org/t/p/w500/xUfRj9v_66EKv_72EKv_72EKv.jpg" onerror="this.src='https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&q=80'" class="card-img" alt="Demon Slayer">
+            </div>
             <div class="card-content">
-                <div>
-                    <span class="rank">#03</span>
-                    <h2>Demon Slayer: Infinity Castle</h2>
-                </div>
-                <a href="https://www.crunchyroll.com/series/GY5P48XEY/demon-slayer-kimetsu-no-yaiba" target="_blank" class="watch-btn">WATCH NOW</a>
+                <h2>Demon Slayer: Infinity Castle</h2>
+                <a href="https://www.crunchyroll.com/series/GY5P48XEY/demon-slayer-kimetsu-no-yaiba" target="_blank" class="watch-btn">Watch Episode 1</a>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://m.media-amazon.com/images/M/MV-Chainsaw-Man.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Chainsaw+Man'" class="card-img" alt="CSM">
+            <span class="rank">#04</span>
+            <div class="img-container">
+                <img src="https://image.tmdb.org/t/p/w500/npS66EKv_72EKv_72EKv_72EKv.jpg" onerror="this.src='https://images.unsplash.com/photo-1542451313056-b7c8e626645f?w=500&q=80'" class="card-img" alt="CSM">
+            </div>
             <div class="card-content">
-                <div>
-                    <span class="rank">#04</span>
-                    <h2>Chainsaw Man Part 2</h2>
-                </div>
-                <a href="https://www.crunchyroll.com/series/G9VHN9MWW/chainsaw-man" target="_blank" class="watch-btn">WATCH NOW</a>
+                <h2>Chainsaw Man Part 2</h2>
+                <a href="https://www.crunchyroll.com/series/G9VHN9MWW/chainsaw-man" target="_blank" class="watch-btn">Watch Episode 1</a>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://m.media-amazon.com/images/M/MV-One-Piece.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=One+Piece'" class="card-img" alt="One Piece">
+            <span class="rank">#05</span>
+            <div class="img-container">
+                <img src="https://image.tmdb.org/t/p/w500/v72EKv_72EKv_72EKv_72EKv.jpg" onerror="this.src='https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&q=80'" class="card-img" alt="One Piece">
+            </div>
             <div class="card-content">
-                <div>
-                    <span class="rank">#05</span>
-                    <h2>One Piece: Elbaf Arc</h2>
-                </div>
-                <a href="https://www.crunchyroll.com/series/GRMG8ZQZR/one-piece" target="_blank" class="watch-btn">WATCH NOW</a>
+                <h2>One Piece: Elbaf</h2>
+                <a href="https://www.crunchyroll.com/series/GRMG8ZQZR/one-piece" target="_blank" class="watch-btn">Watch Episode 1</a>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://m.media-amazon.com/images/M/MV-Spy-Family.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Spy+x+Family'" class="card-img" alt="Spy x Family">
+            <span class="rank">#06</span>
+            <div class="img-container">
+                <img src="https://image.tmdb.org/t/p/w500/q72EKv_72EKv_72EKv_72EKv.jpg" onerror="this.src='https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&q=80'" class="card-img" alt="Spy x Family">
+            </div>
             <div class="card-content">
-                <div>
-                    <span class="rank">#06</span>
-                    <h2>Spy x Family Season 3</h2>
-                </div>
-                <a href="https://www.crunchyroll.com/series/G6W49DG3R/spy-x-family" target="_blank" class="watch-btn">WATCH NOW</a>
+                <h2>Spy x Family S3</h2>
+                <a href="https://www.crunchyroll.com/series/G6W49DG3R/spy-x-family" target="_blank" class="watch-btn">Watch Episode 1</a>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://m.media-amazon.com/images/M/MV-MHA.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=My+Hero+Academia'" class="card-img" alt="MHA">
+            <span class="rank">#07</span>
+            <div class="img-container">
+                <img src="https://image.tmdb.org/t/p/w500/r72EKv_72EKv_72EKv_72EKv.jpg" onerror="this.src='https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500&q=80'" class="card-img" alt="MHA">
+            </div>
             <div class="card-content">
-                <div>
-                    <span class="rank">#07</span>
-                    <h2>My Hero Academia: Final War</h2>
-                </div>
-                <a href="https://www.crunchyroll.com/series/G6NQ5DWZ6/my-hero-academia" target="_blank" class="watch-btn">WATCH NOW</a>
+                <h2>My Hero Academia: Final</h2>
+                <a href="https://www.crunchyroll.com/series/G6NQ5DWZ6/my-hero-academia" target="_blank" class="watch-btn">Watch Episode 1</a>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://m.media-amazon.com/images/M/MV-Oshi-No-Ko.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Oshi+No+Ko'" class="card-img" alt="Oshi No Ko">
+            <span class="rank">#08</span>
+            <div class="img-container">
+                <img src="https://image.tmdb.org/t/p/w500/s72EKv_72EKv_72EKv_72EKv.jpg" onerror="this.src='https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?w=500&q=80'" class="card-img" alt="Oshi No Ko">
+            </div>
             <div class="card-content">
-                <div>
-                    <span class="rank">#08</span>
-                    <h2>Oshi No Ko Season 3</h2>
-                </div>
-                <a href="https://www.hidive.com/tv/oshi-no-ko" target="_blank" class="watch-btn">WATCH NOW</a>
+                <h2>Oshi No Ko Season 3</h2>
+                <a href="https://www.hidive.com/tv/oshi-no-ko" target="_blank" class="watch-btn">Watch Episode 1</a>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://m.media-amazon.com/images/M/MV-Kaiju-No-8.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Kaiju+No.+8'" class="card-img" alt="Kaiju No. 8">
+            <span class="rank">#09</span>
+            <div class="img-container">
+                <img src="https://image.tmdb.org/t/p/w500/t72EKv_72EKv_72EKv_72EKv.jpg" onerror="this.src='https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=500&q=80'" class="card-img" alt="Kaiju No 8">
+            </div>
             <div class="card-content">
-                <div>
-                    <span class="rank">#09</span>
-                    <h2>Kaiju No. 8 Season 2</h2>
-                </div>
-                <a href="https://www.crunchyroll.com/series/GG5H5X00W/kaiju-no-8" target="_blank" class="watch-btn">WATCH NOW</a>
+                <h2>Kaiju No. 8 S2</h2>
+                <a href="https://www.crunchyroll.com/series/GG5H5X00W/kaiju-no-8" target="_blank" class="watch-btn">Watch Episode 1</a>
             </div>
         </div>
 
         <div class="card">
-            <img src="https://m.media-amazon.com/images/M/MV-Blue-Lock.jpg" onerror="this.src='https://via.placeholder.com/400x600?text=Blue+Lock'" class="card-img" alt="Blue Lock">
+            <span class="rank">#10</span>
+            <div class="img-container">
+                <img src="https://image.tmdb.org/t/p/w500/u72EKv_72EKv_72EKv_72EKv.jpg" onerror="this.src='https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&q=80'" class="card-img" alt="Blue Lock">
+            </div>
             <div class="card-content">
-                <div>
-                    <span class="rank">#10</span>
-                    <h2>Blue Lock: U-20 World Cup</h2>
-                </div>
-                <a href="https://www.crunchyroll.com/series/G6W49D37R/blue-lock" target="_blank" class="watch-btn">WATCH NOW</a>
+                <h2>Blue Lock: U-20</h2>
+                <a href="https://www.crunchyroll.com/series/G6W49D37R/blue-lock" target="_blank" class="watch-btn">Watch Episode 1</a>
             </div>
         </div>
     </div>
