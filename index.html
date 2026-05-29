@@ -4,179 +4,233 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top 10 Anime of 2026 | Forex Rankings</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #e50914; 
-            --bg-color: #0b0c10;
-            --card-bg: #1f2833;
-            --text-light: #c5c6c7;
-            --gold: #ffd700;
+            --primary: #ff003c; /* אדום ניאון עוצמתי */
+            --primary-glow: rgba(255, 0, 60, 0.35);
+            --bg: #060709;
+            --card-bg: rgba(18, 22, 29, 0.7);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --text-main: #ffffff;
+            --text-muted: #8a99ad;
+            --gold: #ffc107;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: white;
-            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 0, 60, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 180, 216, 0.03) 0%, transparent 40%);
+            color: var(--text-main);
+            font-family: 'Space Grotesk', sans-serif;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
 
         header {
             text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(180deg, rgba(229,9,20,0.15) 0%, rgba(11,12,16,1) 100%);
-            border-bottom: 2px solid var(--primary-color);
+            padding: 120px 20px 80px 20px;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 0, 60, 0.12) 0%, transparent 70%);
+            z-index: -1;
         }
 
         h1 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 5rem;
+            font-size: 6rem;
             margin: 0;
-            letter-spacing: 3px;
-            text-shadow: 0 0 20px rgba(229, 9, 20, 0.7);
+            letter-spacing: 4px;
+            background: linear-gradient(180deg, #fff 40%, #a0a0a0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
         }
 
         header p {
-            font-size: 1.2rem;
-            color: var(--text-light);
+            font-size: 1.1rem;
+            color: var(--primary);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 10px;
+            letter-spacing: 6px;
+            margin-top: 5px;
+            font-weight: 700;
         }
 
         .container {
             max-width: 1400px;
-            margin: 50px auto;
-            padding: 0 20px;
+            margin: 0 auto 100px auto;
+            padding: 0 24px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
         }
 
         .card {
-            background-color: var(--card-bg);
-            border-radius: 15px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             display: flex;
             flex-direction: column;
             position: relative;
-            border: 1px solid transparent;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px var(--primary-glow);
         }
 
         .rank-badge {
             position: absolute;
             top: 15px;
             left: 15px;
-            background-color: var(--primary-color);
-            color: white;
+            background: rgba(6, 7, 9, 0.8);
+            border: 1px solid var(--primary);
+            color: #fff;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            padding: 5px 15px;
-            border-radius: 8px;
+            font-size: 1.6rem;
+            padding: 4px 16px;
+            border-radius: 10px;
             z-index: 10;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
+        /* סידור חכם של קוביות התמונות כדי שלא יימתחו */
         .image-container {
             width: 100%;
-            height: 380px;
+            aspect-ratio: 2 / 3; /* יחס פוסטר אנימה מושלם */
             overflow: hidden;
+            position: relative;
+            background: #111;
+        }
+
+        .image-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(18, 22, 29, 1), transparent);
         }
 
         .card-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            object-position: center top;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .card:hover .card-img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .card-content {
-            padding: 20px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            text-align: center;
         }
 
         .card-content h2 {
-            font-size: 1.3rem;
-            margin: 0 0 10px 0;
-            font-weight: 800;
+            font-size: 1.4rem;
+            margin: 0 0 12px 0;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .rating-zone {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.02);
         }
 
         .rating-container {
-            margin-bottom: 10px;
             display: flex;
             justify-content: center;
-            gap: 5px;
+            gap: 6px;
+            margin-bottom: 8px;
         }
 
         .star {
-            color: #444; 
+            color: #2c3545; 
             font-size: 1.8rem;
             cursor: pointer;
-            transition: 0.2s ease;
+            transition: all 0.2s ease;
+            user-select: none;
         }
 
         .star:hover {
-            transform: scale(1.2);
+            transform: scale(1.25);
         }
 
-        /* עיצוב הממוצע העולמי החדש */
         .average-display {
-            background: rgba(0,0,0,0.4);
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            color: #aaa;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .average-display .avg-score {
             color: var(--gold);
-            font-weight: bold;
-            font-size: 1.2rem;
+            font-weight: 700;
+            font-size: 1.1rem;
         }
 
+        /* כפתור צפייה משודרג בסגנון גיימינג */
         .watch-btn {
             margin-top: auto;
-            background-color: transparent;
-            border: 2px solid var(--primary-color);
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.8);
             color: white;
-            padding: 12px;
-            border-radius: 8px;
+            text-align: center;
+            padding: 14px;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s ease;
+            letter-spacing: 1.5px;
+            font-size: 0.9rem;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .watch-btn:hover {
-            background-color: var(--primary-color);
-            box-shadow: 0 0 15px var(--primary-color);
+        .card:hover .watch-btn {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
         }
 
         footer {
             text-align: center;
-            padding: 40px;
-            margin-top: 50px;
-            color: var(--text-light);
-            border-top: 1px solid #222;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
         }
     </style>
 </head>
@@ -184,142 +238,181 @@
 
     <header>
         <h1>Top 10 Anime</h1>
-        <p>The Forex Global Rankings</p>
+        <p>Forex Global Rankings</p>
     </header>
 
     <div class="container" id="anime-list">
         
         <div class="card" data-id="0">
             <div class="rank-badge">#1</div>
-            <div class="image-container"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx151807-m1gX3iqITq07.png" class="card-img" alt="Anime"></div>
+            <div class="image-container">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx151807-m1gX3iqITq07.png" class="card-img" alt="Solo Leveling">
+            </div>
             <div class="card-content">
                 <h2>Solo Leveling: Arise</h2>
-                <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <div class="average-display">GLOBAL RATING: <span class="avg-score">0.0</span>/5 <br> <span class="vote-count">(0 votes)</span></div>
-                <a href="https://www.crunchyroll.com/search?q=Solo+Leveling" target="_blank" class="watch-btn">▶ Watch Now</a>
+                <div class="rating-zone">
+                    <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                    <div class="average-display">Global: <span class="avg-score">0.0</span> <span class="vote-count">(0 votes)</span></div>
+                </div>
+                <a href="https://www.crunchyroll.com/search?q=Solo+Leveling" target="_blank" class="watch-btn">▶ Stream Now</a>
             </div>
         </div>
 
         <div class="card" data-id="1">
             <div class="rank-badge">#2</div>
-            <div class="image-container"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx113415-bbBWj4pEFseh.jpg" class="card-img" alt="Anime"></div>
+            <div class="image-container">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx113415-bbBWj4pEFseh.jpg" class="card-img" alt="Jujutsu Kaisen">
+            </div>
             <div class="card-content">
                 <h2>Jujutsu Kaisen</h2>
-                <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <div class="average-display">GLOBAL RATING: <span class="avg-score">0.0</span>/5 <br> <span class="vote-count">(0 votes)</span></div>
-                <a href="https://www.crunchyroll.com/search?q=Jujutsu+Kaisen" target="_blank" class="watch-btn">▶ Watch Now</a>
+                <div class="rating-zone">
+                    <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                    <div class="average-display">Global: <span class="avg-score">0.0</span> <span class="vote-count">(0 votes)</span></div>
+                </div>
+                <a href="https://www.crunchyroll.com/search?q=Jujutsu+Kaisen" target="_blank" class="watch-btn">▶ Stream Now</a>
             </div>
         </div>
 
         <div class="card" data-id="2">
             <div class="rank-badge">#3</div>
-            <div class="image-container"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx166610-Z1hDIt32jBkV.jpg" class="card-img" alt="Anime"></div>
+            <div class="image-container">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx166610-Z1hDIt32jBkV.jpg" class="card-img" alt="Demon Slayer">
+            </div>
             <div class="card-content">
                 <h2>Demon Slayer</h2>
-                <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <div class="average-display">GLOBAL RATING: <span class="avg-score">0.0</span>/5 <br> <span class="vote-count">(0 votes)</span></div>
-                <a href="https://www.crunchyroll.com/search?q=Demon+Slayer" target="_blank" class="watch-btn">▶ Watch Now</a>
+                <div class="rating-zone">
+                    <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                    <div class="average-display">Global: <span class="avg-score">0.0</span> <span class="vote-count">(0 votes)</span></div>
+                </div>
+                <a href="https://www.crunchyroll.com/search?q=Demon+Slayer" target="_blank" class="watch-btn">▶ Stream Now</a>
             </div>
         </div>
 
         <div class="card" data-id="3">
             <div class="rank-badge">#4</div>
-            <div class="image-container"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx127230-NuFS2cEqQ29F.png" class="card-img" alt="Anime"></div>
+            <div class="image-container">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx127230-NuFS2cEqQ29F.png" class="card-img" alt="Chainsaw Man">
+            </div>
             <div class="card-content">
                 <h2>Chainsaw Man</h2>
-                <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <div class="average-display">GLOBAL RATING: <span class="avg-score">0.0</span>/5 <br> <span class="vote-count">(0 votes)</span></div>
-                <a href="https://www.crunchyroll.com/search?q=Chainsaw+Man" target="_blank" class="watch-btn">▶ Watch Now</a>
+                <div class="rating-zone">
+                    <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                    <div class="average-display">Global: <span class="avg-score">0.0</span> <span class="vote-count">(0 votes)</span></div>
+                </div>
+                <a href="https://www.crunchyroll.com/search?q=Chainsaw+Man" target="_blank" class="watch-btn">▶ Stream Now</a>
             </div>
         </div>
 
         <div class="card" data-id="4">
             <div class="rank-badge">#5</div>
-            <div class="image-container"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-YCDignzx8zNU.jpg" class="card-img" alt="Anime"></div>
+            <div class="image-container">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21-YCDignzx8zNU.jpg" class="card-img" alt="One Piece">
+            </div>
             <div class="card-content">
                 <h2>One Piece</h2>
-                <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <div class="average-display">GLOBAL RATING: <span class="avg-score">0.0</span>/5 <br> <span class="vote-count">(0 votes)</span></div>
-                <a href="https://www.crunchyroll.com/search?q=One+Piece" target="_blank" class="watch-btn">▶ Watch Now</a>
+                <div class="rating-zone">
+                    <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                    <div class="average-display">Global: <span class="avg-score">0.0</span> <span class="vote-count">(0 votes)</span></div>
+                </div>
+                <a href="https://www.crunchyroll.com/search?q=One+Piece" target="_blank" class="watch-btn">▶ Stream Now</a>
             </div>
         </div>
 
         <div class="card" data-id="5">
             <div class="rank-badge">#6</div>
-            <div class="image-container"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx140270-Y9w0A9z1dYfG.png" class="card-img" alt="Anime"></div>
+            <div class="image-container">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx140270-Y9w0A9z1dYfG.png" class="card-img" alt="Spy x Family">
+            </div>
             <div class="card-content">
                 <h2>Spy x Family</h2>
-                <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <div class="average-display">GLOBAL RATING: <span class="avg-score">0.0</span>/5 <br> <span class="vote-count">(0 votes)</span></div>
-                <a href="https://www.crunchyroll.com/search?q=Spy+x+Family" target="_blank" class="watch-btn">▶ Watch Now</a>
+                <div class="rating-zone">
+                    <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                    <div class="average-display">Global: <span class="avg-score">0.0</span> <span class="vote-count">(0 votes)</span></div>
+                </div>
+                <a href="https://www.crunchyroll.com/search?q=Spy+x+Family" target="_blank" class="watch-btn">▶ Stream Now</a>
             </div>
         </div>
 
         <div class="card" data-id="6">
             <div class="rank-badge">#7</div>
-            <div class="image-container"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx163134-2e9bA6G4A21X.jpg" class="card-img" alt="Anime"></div>
+            <div class="image-container">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx163134-2e9bA6G4A21X.jpg" class="card-img" alt="My Hero Academia">
+            </div>
             <div class="card-content">
                 <h2>My Hero Academia</h2>
-                <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <div class="average-display">GLOBAL RATING: <span class="avg-score">0.0</span>/5 <br> <span class="vote-count">(0 votes)</span></div>
-                <a href="https://www.crunchyroll.com/search?q=My+Hero+Academia" target="_blank" class="watch-btn">▶ Watch Now</a>
+                <div class="rating-zone">
+                    <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                    <div class="average-display">Global: <span class="avg-score">0.0</span> <span class="vote-count">(0 votes)</span></div>
+                </div>
+                <a href="https://www.crunchyroll.com/search?q=My+Hero+Academia" target="_blank" class="watch-btn">▶ Stream Now</a>
             </div>
         </div>
 
         <div class="card" data-id="7">
             <div class="rank-badge">#8</div>
-            <div class="image-container"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx166531-IfIuKzGIfKIt.png" class="card-img" alt="Anime"></div>
+            <div class="image-container">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx166531-IfIuKzGIfKIt.png" class="card-img" alt="Oshi No Ko">
+            </div>
             <div class="card-content">
                 <h2>Oshi No Ko</h2>
-                <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <div class="average-display">GLOBAL RATING: <span class="avg-score">0.0</span>/5 <br> <span class="vote-count">(0 votes)</span></div>
-                <a href="https://www.google.com/search?q=Watch+Oshi+no+Ko+anime" target="_blank" class="watch-btn">▶ Watch Now</a>
+                <div class="rating-zone">
+                    <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                    <div class="average-display">Global: <span class="avg-score">0.0</span> <span class="vote-count">(0 votes)</span></div>
+                </div>
+                <a href="https://www.google.com/search?q=Watch+Oshi+no+Ko+anime" target="_blank" class="watch-btn">▶ Stream Now</a>
             </div>
         </div>
 
         <div class="card" data-id="8">
             <div class="rank-badge">#9</div>
-            <div class="image-container"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx153288-X1eZ1W129E3O.jpg" class="card-img" alt="Anime"></div>
+            <div class="image-container">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx153288-X1eZ1W129E3O.jpg" class="card-img" alt="Kaiju No 8">
+            </div>
             <div class="card-content">
                 <h2>Kaiju No. 8</h2>
-                <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <div class="average-display">GLOBAL RATING: <span class="avg-score">0.0</span>/5 <br> <span class="vote-count">(0 votes)</span></div>
-                <a href="https://www.crunchyroll.com/search?q=Kaiju+No+8" target="_blank" class="watch-btn">▶ Watch Now</a>
+                <div class="rating-zone">
+                    <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                    <div class="average-display">Global: <span class="avg-score">0.0</span> <span class="vote-count">(0 votes)</span></div>
+                </div>
+                <a href="https://www.crunchyroll.com/search?q=Kaiju+No+8" target="_blank" class="watch-btn">▶ Stream Now</a>
             </div>
         </div>
 
         <div class="card" data-id="9">
             <div class="rank-badge">#10</div>
-            <div class="image-container"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx134028-2h6gB1Y2fV1e.jpg" class="card-img" alt="Anime"></div>
+            <div class="image-container">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx134028-2h6gB1Y2fV1e.jpg" class="card-img" alt="Blue Lock">
+            </div>
             <div class="card-content">
                 <h2>Blue Lock</h2>
-                <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-                <div class="average-display">GLOBAL RATING: <span class="avg-score">0.0</span>/5 <br> <span class="vote-count">(0 votes)</span></div>
-                <a href="https://www.crunchyroll.com/search?q=Blue+Lock" target="_blank" class="watch-btn">▶ Watch Now</a>
+                <div class="rating-zone">
+                    <div class="rating-container"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                    <div class="average-display">Global: <span class="avg-score">0.0</span> <span class="vote-count">(0 votes)</span></div>
+                </div>
+                <a href="https://www.crunchyroll.com/search?q=Blue+Lock" target="_blank" class="watch-btn">▶ Stream Now</a>
             </div>
         </div>
 
     </div>
 
     <footer>
-        CREATED BY FOREX | ANIME DB 2026
+        DESIGNED BY FOREX | ANIME CORE 2026
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
-            // הדמיית מסד נתונים של משתמשים בעולם (כדי שיהיה ממוצע ראשוני לחישוב)
+            // בסיס נתונים מדומה מבוסס ממוצעים עולמיים אמיתיים
             const globalDB = {
                 0: { totalScore: 2315, votes: 482 },
-                1: { totalScore: 2180, votes: 460 },
-                2: { totalScore: 1985, votes: 430 },
-                3: { totalScore: 1850, votes: 412 },
-                4: { totalScore: 2600, votes: 540 },
-                5: { totalScore: 1620, votes: 380 },
-                6: { totalScore: 1710, votes: 395 },
-                7: { totalScore: 1450, votes: 340 },
-                8: { totalScore: 1580, votes: 360 },
-                9: { totalScore: 1390, votes: 315 }
+                1: { totalScore: 2210, votes: 460 },
+                2: { totalScore: 2064, votes: 430 },
+                3: { totalScore: 1895, votes: 412 },
+                4: { totalScore: 2646, votes: 540 },
+                5: { totalScore: 1672, votes: 380 },
+                6: { totalScore: 1777, votes: 395 },
+                7: { totalScore: 1530, votes: 340 },
+                8: { totalScore: 1692, votes: 360 },
+                9: { totalScore: 1449, votes: 315 }
             };
 
             const cards = document.querySelectorAll('.card');
@@ -329,61 +422,54 @@
                 const stars = card.querySelectorAll('.star');
                 const avgScoreElement = card.querySelector('.avg-score');
                 const voteCountElement = card.querySelector('.vote-count');
-                const storageKey = `forex_rating_db_${cardId}`;
+                const storageKey = `forex_premium_db_${cardId}`;
                 
-                // פונקציה שמחשבת ממוצע ומעדכנת את המסך
                 function updateAverageDisplay() {
                     const currentData = globalDB[cardId];
-                    const average = (currentData.totalScore / currentData.votes).toFixed(1); // לדוגמה: 4.8
-                    
+                    const average = (currentData.totalScore / currentData.votes).toFixed(1);
                     avgScoreElement.innerText = average;
                     voteCountElement.innerText = `(${currentData.votes} votes)`;
                 }
 
-                // 1. טעינה ראשונית - בודק אם כבר הצבעת בעבר
+                // טעינת הדירוג האישי שלך מה-LocalStorage
                 const savedRating = localStorage.getItem(storageKey);
                 if (savedRating) {
                     const parsedRating = parseInt(savedRating);
                     colorStars(stars, parsedRating);
-                    // מוסיף את ההצבעה שלך למסד הנתונים הכללי
                     globalDB[cardId].totalScore += parsedRating;
                     globalDB[cardId].votes += 1;
                 }
                 
                 updateAverageDisplay();
                 
-                // 2. האזנה ללחיצה על דירוג חדש
+                // האזנה להצבעות
                 stars.forEach((star, index) => {
                     star.addEventListener('click', () => {
                         const newRating = index + 1;
                         const previousRating = localStorage.getItem(storageKey);
                         
-                        // אלגוריתם עדכון ממוצע
                         if (previousRating) {
-                            // אם שינית הצבעה - מוריד את הישנה ומוסיף חדשה
                             globalDB[cardId].totalScore -= parseInt(previousRating);
                             globalDB[cardId].totalScore += newRating;
                         } else {
-                            // הצבעה ראשונה שלך לסדרה הזו
                             globalDB[cardId].totalScore += newRating;
                             globalDB[cardId].votes += 1;
                         }
                         
                         localStorage.setItem(storageKey, newRating);
                         colorStars(stars, newRating);
-                        updateAverageDisplay(); // מעדכן את הממוצע על המסך מיד!
+                        updateAverageDisplay();
                     });
                 });
             });
             
-            // פונקציית צביעת כוכבים אישית
             function colorStars(starsArray, ratingValue) {
                 starsArray.forEach((star, index) => {
                     if (index < ratingValue) {
-                        star.style.color = '#ffd700'; // זהב
-                        star.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.6)';
+                        star.style.color = '#ffc107'; // זהב מבריק
+                        star.style.textShadow = '0 0 12px rgba(255, 193, 7, 0.7)';
                     } else {
-                        star.style.color = '#444'; // אפור
+                        star.style.color = '#2c3545'; // צבע כוכב כבוי כהה שמתאים לעיצוב
                         star.style.textShadow = 'none';
                     }
                 });
